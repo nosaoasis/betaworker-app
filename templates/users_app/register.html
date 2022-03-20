@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+
+
+{% block title %}
+  {{ page_title }}
+{% endblock title %}
+
+
+
+{% block content %}
+
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url('/static/images/login-banner-2.jpg')" id="home-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="text-white font-weight-bold display-3">Signup</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-5">
+            <div style="height:80%; width:80%; background:yellow">
+              <img src="{% static 'images/login-side-image.jpg' %}" alt="Image" style="height:100%; width:100%;">
+            </div>
+            
+          </div>
+          <div class="col-lg-6">
+            <h2 class="mb-4 text-info font-weight-bold">Signup</h2>
+
+            <form class="login-form" method="POST" action="{% url 'users_app:register' %}">
+              {% csrf_token %}
+
+              <!-- <div class="col-md-12">
+                {% if form.errors %}
+                  {% for field in form %}
+                    {% for error in field.errors %}
+                      <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                        <strong>{{ field|escape }}</strong>
+                      </div>
+                    {% endfor %}
+                  {% endfor %}
+                {% endif %}
+              </div> -->
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group position-relative">
+                    {{ form.firstname }}
+                  </div>
+                  {% if form.firstname.errors %}
+                    {% for error in form.firstname.errors %}
+                      <div class="alert alert-danger">
+                        <p class="text-danger h6 font-weight-bold">- {{ error|escape }}</p>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group position-relative">
+                    {{ form.lastname }}
+                  </div>
+                  {% if form.lastname.errors %}
+                    {% for error in form.lastname.errors %}
+                      <div class="alert alert-danger">
+                        <p class="text-danger h6 font-weight-bold">- {{ error|escape }}</p>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group position-relative">
+                    {{ form.username }}
+                  </div>
+                  {% if form.username.errors %}
+                    {% for error in form.username.errors %}
+                      <div class="alert alert-danger">
+                        <p class="text-danger h6 font-weight-bold">- {{ error|escape }}</p>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group position-relative">
+                    {{ form.email }}
+                  </div>
+                  {% if form.email.errors %}
+                    {% for error in form.email.errors %}
+                      <div class="alert alert-danger">
+                        <p class="text-danger h6 font-weight-bold">- {{ error|escape }}</p>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group position-relative">
+                  {{ form.password }}
+                  </div>
+                  {% if form.password.errors %}
+                    {% for error in form.password.errors %}
+                      <div class="alert alert-danger">
+                        <p class="text-danger h6 font-weight-bold">- {{ error|escape }}</p>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group position-relative">
+                  {{ form.password2 }}
+                  </div>
+                  {% if form.password2.errors %}
+                    {% for error in form.password2.errors %}
+                      <p class="text-danger h6 font-weight-bold">- {{ error|escape }}</p>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="custom-control m-0 custom-checkbox">
+                      {{ form.check_terms }}
+                      I accept <a href="#" class="text-info">Terms and Conditions</a>
+                    </div>
+                    {% if form.check_terms.errors %}
+                      {% for error in form.check_terms.errors %}
+                        <div class="alert alert-danger">
+                          <strong>{{ error|escape }}</strong>
+                        </div>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-info w-100">Signup</button>
+                </div>
+
+                <div class="col-md-12 mt-4">
+                <p>Already have an account? <a href="{% url 'users_app:login' %}" class="text-info font-weight-bold">Login</a></p>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    
+{% endblock content%}

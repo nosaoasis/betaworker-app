@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+
+
+{% block title %}
+  {{ page_title }}
+{% endblock title %}
+
+{% block content %}
+
+    <section class="section-hero overlay inner-page bg-image" style="background-image: url('/static/images/login-banner-2.jpg')" id="home-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="text-white font-weight-bold display-3">Login</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-5">
+            <div style="height:80%; width:80%; background:yellow">
+              <img src="{% static 'images/login-side-image.jpg' %}" alt="Image" style="height:100%; width:100%;">
+            </div>
+            
+          </div>
+          <div class="col-lg-6">
+            <h2 class="mb-4 text-info font-weight-bold">Login</h2>
+
+            <form class="login-form" method="POST">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group position-relative">
+                    <!-- <label>Email <span class="text-danger"></span></label> -->
+                    <input type="email" class="form-control border-info" placeholder="Email" name="email" required="">
+                    {{ forms.email }}
+                  </div>
+                  {% if form.email.errors %}
+                    {% for error in form.email.error %}
+                      <div class="alert alert-danger">
+                        <p class="text-danger h6 font-weight-bold">- {{ error|escape }}</p>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group position-relative">
+                    <!-- <label>Password <span class="text-danger"></span></label> -->
+                    <input type="password" class="form-control border-info" placeholder="Password" name="password" required="">
+                    {{ form.password }}
+                  </div>
+                  {% if form.password.errors %}
+                    {% for error in form.password.errors %}
+                      <div class="alert alert-danger">
+                        <p class="text-danger h6 font-weight-bold">- {{ error|escape }}</p>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="custom-control m-0 custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1" name="remember_me" required="">
+                      <label class="custom-control-label" for="customCheck1">Remember me</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-info w-100">Register</button>
+                </div>
+
+                <div class="col-md-12 mt-4">
+                <p>Don't have an account? <a href="{% url 'users_app:register' %}" class="text-info font-weight-bold">Signup</a></p>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    
+{% endblock content%}
